@@ -1,6 +1,6 @@
 name = "MPIABI_jll"
 uuid = "b5ada748-db0f-5fc0-8972-9331c762740c"
-version = "0.1.0+0"
+version = "0.1.1+0"
 
 [deps]
 MPIPreferences = "3da0fdf6-3ccc-4f1b-acd9-58baa6c99267"
