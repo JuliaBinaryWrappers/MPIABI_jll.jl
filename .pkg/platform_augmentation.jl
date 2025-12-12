@@ -1,5 +1,6 @@
-    using Base.BinaryPlatforms
-    # Can't use Preferences since we might be running this very early with a non-existing Manifest
+using Base.BinaryPlatforms
+
+# Can't use Preferences since we might be running this very early with a non-existing Manifest
 MPIPreferences_UUID = Base.UUID("3da0fdf6-3ccc-4f1b-acd9-58baa6c99267")
 const preferences = Base.get_preferences(MPIPreferences_UUID)
 
@@ -18,18 +19,20 @@ function augment_mpi!(platform)
                 abi
             end
         end
-    elseif binary == "MicrosoftMPI_jll"
-        "MicrosoftMPI"
+    elseif binary == "MPIABI_jll"
+        "MPIABI"
     elseif binary == "MPICH_jll"
         "MPICH"
     elseif binary == "MPICH_CUDA_jll"
         "MPICH"
-    elseif binary == "OpenMPI_jll"
-        "OpenMPI"
     elseif binary == "MPItrampoline_jll"
         "MPItrampoline"
+    elseif binary == "MicrosoftMPI_jll"
+        "MicrosoftMPI"
+    elseif binary == "OpenMPI_jll"
+        "OpenMPI"
     else
-        error("Unknown binary: $binary")
+        error("Unknown binary: ", binary)
     end
 
     if !haskey(platform, "mpi")
@@ -38,4 +41,4 @@ function augment_mpi!(platform)
     return platform
 end
 
-    augment_platform!(platform::Platform) = augment_mpi!(platform)
+augment_platform!(platform::Platform) = augment_mpi!(platform)
