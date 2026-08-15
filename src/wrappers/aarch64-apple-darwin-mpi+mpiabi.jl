@@ -3,13 +3,13 @@ export libmpi, mpiexec
 
 using Hwloc_jll
 JLLWrappers.@generate_wrapper_header("MPIABI")
-JLLWrappers.@declare_library_product(libmpi, "@rpath/libmpi_abi.0.dylib")
+JLLWrappers.@declare_library_product(libmpi, "@rpath/libmpi_abi.1.dylib")
 JLLWrappers.@declare_executable_product(mpiexec)
 function __init__()
     JLLWrappers.@generate_init_header(Hwloc_jll, MPIPreferences)
     JLLWrappers.@init_library_product(
         libmpi,
-        "lib/libmpi_abi.0.dylib",
+        "lib/libmpi_abi.1.dylib",
         RTLD_LAZY | RTLD_DEEPBIND,
     )
 
